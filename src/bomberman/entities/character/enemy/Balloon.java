@@ -2,6 +2,7 @@ package bomberman.entities.character.enemy;
 
 import bomberman.Board;
 import bomberman.entities.character.enemy.ai.AILow;
+import bomberman.view.Screen;
 import bomberman.view.Sprite;
 
 public class Balloon extends Enemy {

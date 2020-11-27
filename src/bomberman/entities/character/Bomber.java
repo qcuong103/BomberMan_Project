@@ -17,6 +17,7 @@ import bomberman.view.Sprite;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Bomber extends Character {
 
@@ -34,6 +35,7 @@ public class Bomber extends Character {
         _bombs = _board.getBombs();
         _input = _board.getInput();
         _sprite = Sprite.player_right;
+        _timeAfter = 20;
     }
 
     @Override
@@ -60,8 +62,17 @@ public class Bomber extends Character {
 
         if (_alive)
             chooseSprite();
-        else
-            _sprite = Sprite.player_dead1;
+        else {
+////            System.out.println(_animate);
+////            animate();
+            if(_timeAfter > 0) {
+//                _sprite = _deadSprite;
+                _sprite = Sprite.player_down;
+                _animate = 0;
+            }
+                _sprite = Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, _animate, 60);
+            }
+
 
         screen.renderEntity((int) _x, (int) _y - _sprite.SIZE, this);
     }
@@ -124,6 +135,7 @@ public class Bomber extends Character {
     protected void afterKill() {
         if (_timeAfter > 0) --_timeAfter;
         else {
+//            TimeUnit.SECONDS.sleep(3);
             _board.endGame();
         }
     }
@@ -204,6 +216,7 @@ public class Bomber extends Character {
                 _sprite = Sprite.player_up;
                 if (_moving) {
                     _sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, _animate, 20);
+//                    System.out.println(_animate);
                 }
                 break;
             case 1:

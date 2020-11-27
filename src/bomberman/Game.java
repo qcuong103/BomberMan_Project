@@ -3,6 +3,7 @@ package bomberman;
 import bomberman.input.Keyboard;
 import bomberman.view.Frame;
 import bomberman.view.Screen;
+import bomberman.view.ViewManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -42,7 +43,7 @@ public class Game extends Canvas {
 
     private Board _board;
     private Screen screen;
-    private Frame _frame;
+    public Frame _frame;
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();

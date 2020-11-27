@@ -10,8 +10,10 @@ import bomberman.exception.LoadLevelException;
 import bomberman.input.Keyboard;
 import bomberman.level.FileLevelLoader;
 import bomberman.level.LevelLoader;
+import bomberman.view.Frame;
 import bomberman.view.IRender;
 import bomberman.view.Screen;
+import bomberman.view.ViewManager;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class Board implements IRender {
     protected Game _game;
     protected Keyboard _input;
     protected Screen _screen;
+    protected ViewManager manager;
 
     public Entity[] _entities;
     public List<Character> _characters = new ArrayList<>();
@@ -38,7 +41,6 @@ public class Board implements IRender {
         _game = game;
         _input = input;
         _screen = screen;
-
         loadLevel(1); //start in level 1
     }
 
@@ -114,6 +116,8 @@ public class Board implements IRender {
         _screenToShow = 1;
         _game.resetScreenDelay();
         _game.pause();
+//        _game._frame.setVisible(false);
+
     }
 
     public boolean detectNoEnemies() {// phat hien enemies

@@ -44,7 +44,6 @@ public abstract class Enemy extends Character {
 
     @Override
     public void update() {
-        animate();
 
         if(!_alive) {
             afterKill();
@@ -53,11 +52,12 @@ public abstract class Enemy extends Character {
 
         if(_alive)
             calculateMove();
+
+        animate();
     }
 
     @Override
     public void render(Screen screen) {
-
         if(_alive)
             chooseSprite();
         else {
@@ -65,7 +65,7 @@ public abstract class Enemy extends Character {
                 _sprite = _deadSprite;
                 _animate = 0;
             } else {
-                _sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, _animate, 60);
+                _sprite = Sprite.movingSprite(Sprite.mob_dead3, Sprite.mob_dead2, Sprite.mob_dead1, _animate, 60);
             }
 
         }

@@ -2,12 +2,13 @@ package bomberman.entities.character.enemy;
 
 import bomberman.Board;
 import bomberman.entities.character.enemy.ai.AIMedium;
+import bomberman.view.Screen;
 import bomberman.view.Sprite;
 
 public class Doll extends Enemy{
 
     public Doll(int x, int y, Board board) {
-        super(x, y, board, Sprite.balloom_dead, 0.8, 100);
+        super(x, y, board, Sprite.doll_dead, 0.8, 100);
 
         _sprite = Sprite.balloom_left1;
 

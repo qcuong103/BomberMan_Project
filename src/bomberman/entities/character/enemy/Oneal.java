@@ -2,12 +2,13 @@ package bomberman.entities.character.enemy;
 
 import bomberman.Board;
 import bomberman.entities.character.enemy.ai.AILow;
+import bomberman.view.Screen;
 import bomberman.view.Sprite;
 
 public class Oneal extends Enemy {
     //private Random random = new Random();
     public Oneal(int x, int y, Board board) {
-        super(x, y, board, Sprite.balloom_dead, 0.8 , 100);
+        super(x, y, board, Sprite.oneal_dead, 0.8 , 100);
 
         _sprite = Sprite.balloom_left1;
 
@@ -16,6 +17,7 @@ public class Oneal extends Enemy {
         //this._speed += random.nextDouble()/2;
 
     }
+
 
     @Override
     protected void chooseSprite() {
