@@ -7,6 +7,7 @@ import bomberman.entities.Entity;
 import bomberman.entities.character.Bomber;
 import bomberman.entities.character.Character;
 import bomberman.level.Coordinates;
+import bomberman.sound.Sound;
 import bomberman.view.Screen;
 import bomberman.view.Sprite;
 
@@ -88,7 +89,7 @@ public class Bomb extends AnimatedEntitiy {
         for (int i = 0; i < _flames.length; i++) {
             _flames[i] = new Flame((int) _x, (int) _y, i, Game.getBombRadius(), _board);
         }
-//                Sound.play("BOM_11_M");
+                Sound.play("BOM_11_M");
     }
     public void time_explode() {
         _timeToExplode = 0;

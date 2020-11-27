@@ -3,6 +3,7 @@ package bomberman.entities.tile;
 import bomberman.Board;
 import bomberman.entities.Entity;
 import bomberman.entities.character.Bomber;
+import bomberman.sound.Sound;
 import bomberman.view.Sprite;
 
 public class Portal extends Tile {
@@ -25,7 +26,7 @@ public class Portal extends Tile {
             if(e.getXTile() == getX() && e.getYTile() == getY()) {
                 if(_board.detectNoEnemies()){
                     _board.nextLevel();
-//                                        Sound.play("CRYST_UP");
+                                        Sound.play("CRYST_UP");
                 }
             }
 

@@ -3,6 +3,7 @@ package bomberman.entities.tile.item;
 import bomberman.Game;
 import bomberman.entities.Entity;
 import bomberman.entities.character.Bomber;
+import bomberman.sound.Sound;
 import bomberman.view.Sprite;
 
 public class FlameItem extends Item {
@@ -16,7 +17,7 @@ public class FlameItem extends Item {
         // TODO: xử lý Bomber ăn
         if (e instanceof Bomber) {
 
-//                Sound.play("Item");
+                Sound.play("Item");
             Game.addBombRadius(1);
             remove();
         }

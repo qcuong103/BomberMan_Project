@@ -11,6 +11,7 @@ import bomberman.entities.bomb.Flame;
 import bomberman.entities.character.enemy.Enemy;
 import bomberman.input.Keyboard;
 import bomberman.level.Coordinates;
+import bomberman.sound.Sound;
 import bomberman.view.Screen;
 import bomberman.view.Sprite;
 
@@ -107,7 +108,7 @@ public class Bomber extends Character {
         // TODO: thực hiện tạo đối tượng bom, đặt vào vị trí (x, y)
         Bomb b = new Bomb(x, y, _board);
         _board.addBomb(b);
-//        Sound.play("BOM_SET");
+        Sound.play("BOM_SET");
     }
 
     private void clearBombs() {
@@ -128,7 +129,7 @@ public class Bomber extends Character {
     public void kill() {
         if (!_alive) return;
         _alive = false;
-//        Sound.play("endgame3");
+        Sound.play("endgame3");
     }
 
     @Override

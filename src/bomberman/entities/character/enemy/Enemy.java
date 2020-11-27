@@ -9,6 +9,7 @@ import bomberman.entities.character.Bomber;
 import bomberman.entities.character.Character;
 import bomberman.entities.character.enemy.ai.AI;
 import bomberman.level.Coordinates;
+import bomberman.sound.Sound;
 import bomberman.view.Screen;
 import bomberman.view.Sprite;
 
@@ -148,7 +149,7 @@ public abstract class Enemy extends Character {
 
         Message msg = new Message("+" + _points, getXMessage(), getYMessage(), 2, Color.white, 14);
         _board.addMessage(msg);
-//                Sound.play("AA126_11");
+                Sound.play("AA126_11");
     }
 
 

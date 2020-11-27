@@ -1,9 +1,14 @@
 package bomberman.view;
 
 import bomberman.Game;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
+//import javax.swing.*;
 import javax.swing.*;
 import java.awt.*;
+
+import static com.sun.glass.ui.Cursor.setVisible;
 
 public class Frame extends JFrame {
 
@@ -34,6 +39,7 @@ public class Frame extends JFrame {
 
         _game.start();
     }
+
 
     public void setTime(int time) {
         _infopanel.setTime(time);
