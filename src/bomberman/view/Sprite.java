@@ -1,21 +1,25 @@
 package bomberman.view;
 
+import javafx.scene.image.*;
+
 public class Sprite {
 
     public static final int DEFAULT_SIZE = 16;
+    public static final int SCALED_SIZE = DEFAULT_SIZE * 2;
+    private static final int TRANSPARENT_COLOR = 0xffff00ff;
     public final int SIZE;
     private int _x, _y;
     public int[] _pixels;
     protected int _realWidth;
     protected int _realHeight;
     private SpriteSheet _sheet;
-//    private SpriteSheet1 _sheet1;
+
     /*
     |--------------------------------------------------------------------------
     | Board sprites
     |--------------------------------------------------------------------------
      */
-public static Sprite grass = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
+    public static Sprite grass = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite brick = new Sprite(DEFAULT_SIZE, 7, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite wall = new Sprite(DEFAULT_SIZE, 5, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite portal = new Sprite(DEFAULT_SIZE, 4, 0, SpriteSheet.tiles, 14, 14);
@@ -105,6 +109,28 @@ public static Sprite grass = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 1
     public static Sprite kondoria_right3 = new Sprite(DEFAULT_SIZE, 11, 7, SpriteSheet.tiles, 16, 16);
 
     public static Sprite kondoria_dead = new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 16, 16);
+
+    //Ovape
+    public static Sprite ovape_left1 = new Sprite(DEFAULT_SIZE, 6, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_left2 = new Sprite(DEFAULT_SIZE, 6, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_left3 = new Sprite(DEFAULT_SIZE, 6, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite ovape_right1 = new Sprite(DEFAULT_SIZE, 7, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_right2 = new Sprite(DEFAULT_SIZE, 7, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_right3 = new Sprite(DEFAULT_SIZE, 7, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite ovape_dead = new Sprite(DEFAULT_SIZE, 6, 8, SpriteSheet.tiles, 16, 16);
+
+    //Pass
+    public static Sprite pass_left1 = new Sprite(DEFAULT_SIZE, 4, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_left2 = new Sprite(DEFAULT_SIZE, 4, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_left3 = new Sprite(DEFAULT_SIZE, 4, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite pass_right1 = new Sprite(DEFAULT_SIZE, 5, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_right2 = new Sprite(DEFAULT_SIZE, 5, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_right3 = new Sprite(DEFAULT_SIZE, 5, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite pass_dead = new Sprite(DEFAULT_SIZE, 4, 8, SpriteSheet.tiles, 16, 16);
 
     //ALL
     public static Sprite mob_dead1 = new Sprite(DEFAULT_SIZE, 15, 0, SpriteSheet.tiles, 16, 16);
@@ -270,6 +296,49 @@ public static Sprite grass = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 1
         return _pixels[i];
     }
 
+    public Image getFxImage() {
+        WritableImage wr = new WritableImage(SIZE, SIZE);
+        PixelWriter pw = wr.getPixelWriter();
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
+                if ( _pixels[x + y * SIZE] == TRANSPARENT_COLOR) {
+                    pw.setArgb(x, y, 0);
+                }
+                else {
+                    pw.setArgb(x, y, _pixels[x + y * SIZE]);
+                }
+            }
+        }
+        Image input = new ImageView(wr).getImage();
+        return resample(input, SCALED_SIZE / DEFAULT_SIZE);
+    }
+
+    private Image resample(Image input, int scaleFactor) {
+        final int W = (int) input.getWidth();
+        final int H = (int) input.getHeight();
+        final int S = scaleFactor;
+
+        WritableImage output = new WritableImage(
+                W * S,
+                H * S
+        );
+
+        PixelReader reader = input.getPixelReader();
+        PixelWriter writer = output.getPixelWriter();
+
+        for (int y = 0; y < H; y++) {
+            for (int x = 0; x < W; x++) {
+                final int argb = reader.getArgb(x, y);
+                for (int dy = 0; dy < S; dy++) {
+                    for (int dx = 0; dx < S; dx++) {
+                        writer.setArgb(x * S + dx, y * S + dy, argb);
+                    }
+                }
+            }
+        }
+
+        return output;
+    }
 }
 
 

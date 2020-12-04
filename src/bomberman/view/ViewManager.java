@@ -5,6 +5,7 @@ import bomberman.model.BomberManSubScene;
 import bomberman.model.InfoLabel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -130,9 +131,12 @@ public class ViewManager {
 //                showSubscene(shipChooserSubScene);
 //                shipChooserSubScene.moveSubScene();
                 mainStage.hide();
-                new Frame();
+                GameViewManager gameViewManager = new GameViewManager();
+                gameViewManager.showGame();
+//                new Frame();
 //                Frame gameViewManager = new Frame();
 //                gameViewManager.createNewGame(mainStage);
+
             }
         });
     }

@@ -1,65 +1,108 @@
 package bomberman.entities;
 
-import bomberman.level.Coordinates;
-import bomberman.view.IRender;
-import bomberman.view.Screen;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import bomberman.view.Sprite;
 
-public abstract class Entity implements IRender {
 
-    protected double _x, _y;
-    protected boolean _removed = false;
-    protected Sprite _sprite;
+public abstract class Entity {
+    //Tọa độ X tính từ góc trái trên trong Canvas
+    protected int x;
 
-    /**
-     * Phương thức này được gọi liên tục trong vòng lặp game,
-     * mục đích để xử lý sự kiện và cập nhật trạng thái Entity
-     */
-    @Override
+    //Tọa độ Y tính từ góc trái trên trong Canvas
+    protected int y;
+
+    protected Image img;
+
+    protected int animate;
+
+    protected boolean isVisible = true;
+
+    //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
+    public Entity( int xUnit, int yUnit, Image img) {
+        this.x = xUnit * Sprite.SCALED_SIZE;
+        this.y = yUnit * Sprite.SCALED_SIZE;
+        this.img = img;
+        this.animate = Sprite.DEFAULT_SIZE;
+    }
+
+    public void render(GraphicsContext gc) {
+        gc.drawImage(img, x, y);
+    }
     public abstract void update();
 
-    /**
-     * Phương thức này được gọi liên tục trong vòng lặp game,
-     * mục đích để cập nhật hình ảnh của entity theo trạng thái
-     */
-    @Override
-    public abstract void render(Screen screen);
-
-    public void remove() {
-        _removed = true;
+    public Image getImg() {
+        return img;
     }
 
-    public boolean isRemoved() {
-        return _removed;
+    public void setImg(Image img) {
+        this.img = img;
     }
 
-    public Sprite getSprite() {
-        return _sprite;
+    public int getX() {
+        return x;
     }
 
-    /**
-     * Phương thức này được gọi để xử lý khi hai entity va chạm vào nhau
-     * @param e
-     * @return
-     */
-    public abstract boolean collide(Entity e);
-    //xu li 2 entity va cham
-
-    public double getX() {
-        return _x;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public double getY() {
-        return _y;
+    public int getY() {
+        return y;
     }
 
-    public int getXTile() {
-        return Coordinates.pixelToTile(_x + _sprite.SIZE / 2);
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public int getYTile() {
-        return Coordinates.pixelToTile(_y - _sprite.SIZE / 2);
+    public boolean isVisible() {
+        return isVisible;
     }
 
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
 
+    public Rectangle2D getBoundary()
+    {
+        return new Rectangle2D(x, y, Sprite.SCALED_SIZE, Sprite.SCALED_SIZE);
+    }
+
+    public boolean intersects(Entity s)
+    {
+        return s.getBoundary().intersects( this.getBoundary() );
+    }
+
+    public boolean checkBounds() {
+        for (Entity e : EntityArr.walls) {
+            if (this.intersects(e)) return true;
+        }
+
+        for (Entity e : EntityArr.bricks) {
+            if (this.intersects(e)) return true;
+        }
+        return false;
+    }
+
+    public boolean checkBomb() {
+        for (Entity e : EntityArr.bomberman.bombs) {
+            if (this.intersects(e)) return true;
+        }
+        return false;
+    }
+
+    public boolean checkWall() {
+        for (Entity e : EntityArr.walls) {
+            if (this.intersects(e)) return true;
+        }
+        return false;
+    }
+
+    public boolean checkBrick() {
+        for (Entity e : EntityArr.bricks) {
+            if (this.intersects(e)) return true;
+        }
+        return false;
+    }
 }
