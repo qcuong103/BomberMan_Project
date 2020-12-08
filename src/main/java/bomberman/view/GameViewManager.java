@@ -69,18 +69,16 @@ public class GameViewManager {
         AnimationTimer timer = new AnimationTimer() {
             long lOLD = 0;
             long numChange = 0;
+
             @Override
             public void handle(long l) {
                 if (up) {
                     EntityArr.bomberman.goUp();
-                }
-                else if (down) {
+                } else if (down) {
                     EntityArr.bomberman.goDown();
-                }
-                else if (left) {
+                } else if (left) {
                     EntityArr.bomberman.goLeft();
-                }
-                else if (right) {
+                } else if (right) {
                     EntityArr.bomberman.goRight();
                 }
                 render();
@@ -106,7 +104,6 @@ public class GameViewManager {
             }
         };
         timer.start();
-
 
         /**
          * Hanh dong cua bomber
