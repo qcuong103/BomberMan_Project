@@ -1,5 +1,6 @@
 package bomberman.entities;
 
+import bomberman.sound.Sound;
 import bomberman.view.GameViewManager;
 import javafx.scene.image.Image;
 import bomberman.BombermanGame;
@@ -200,7 +201,7 @@ public class Bomber extends bomberman.entities.Entity {
 
         if (!this.duplicateBomb(bomb)
                 && getNumBombs() >= this.bombs.size() + 1) {
-//            Sound.play("BOM_SET");
+            Sound.play("BOM_SET");
             this.bombs.add(bomb);
         }
     }

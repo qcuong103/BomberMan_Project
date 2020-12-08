@@ -1,5 +1,6 @@
 package bomberman.entities.enemy;
 
+import bomberman.view.GameViewManager;
 import javafx.scene.image.Image;
 import bomberman.entities.Entity;
 import bomberman.entities.EntityArr;
@@ -15,6 +16,7 @@ public abstract class Enemy extends Entity {
     public static final int UP = 3;
 
     private int speed = 1;
+
 
     protected int speedX = this.speed;
 
@@ -49,6 +51,7 @@ public abstract class Enemy extends Entity {
     }
 
     public void enemyDead() {
+//        GameViewManager.POINTS += 1;
         this.setImg(Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3
                 , this.animate, Sprite.DEFAULT_SIZE).getFxImage());
     }

@@ -89,6 +89,7 @@ public class Minvo extends Enemy {
             choseSprite();
         } else {
             this.enemyDead();
+
         }
     }
 

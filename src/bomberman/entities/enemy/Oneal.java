@@ -76,6 +76,7 @@ public class Oneal extends Enemy {
             }
         } else {
             this.enemyDead();
+
         }
     }
 

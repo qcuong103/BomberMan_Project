@@ -1,5 +1,6 @@
 package bomberman;
 
+import bomberman.sound.Sound;
 import bomberman.view.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -14,7 +15,7 @@ public class BombermanGame extends Application{
     }
 
     public static void main(String[] args) {
-//        Sound.play("soundtrack");
+        Sound.play("soundtrack");
         launch(args);
 //        new Frame();
     }

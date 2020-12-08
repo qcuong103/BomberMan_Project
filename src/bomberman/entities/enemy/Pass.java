@@ -82,6 +82,7 @@ public class Pass extends Enemy {
             choseSprite();
         } else {
             this.enemyDead();
+
         }
     }
 

@@ -84,6 +84,7 @@ public class Doll extends Enemy {
             choseSprite();
         } else {
             this.enemyDead();
+
         }
     }
 

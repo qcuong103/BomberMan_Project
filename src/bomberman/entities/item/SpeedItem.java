@@ -1,5 +1,6 @@
 package bomberman.entities.item;
 
+import bomberman.sound.Sound;
 import javafx.scene.image.Image;
 import bomberman.entities.EntityArr;
 import bomberman.view.Sprite;
@@ -15,7 +16,7 @@ public class SpeedItem extends Item {
         super.update();
         if (this.used == 1) {
             EntityArr.bomberman.setSpeed(EntityArr.bomberman.getSpeed() + Sprite.DEFAULT_SIZE / 12);
-//            Sound.play("Item1");
+            Sound.play("Item");
         }
     }
 }

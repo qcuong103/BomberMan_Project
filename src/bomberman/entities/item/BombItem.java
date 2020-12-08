@@ -1,5 +1,6 @@
 package bomberman.entities.item;
 
+import bomberman.sound.Sound;
 import javafx.scene.image.Image;
 import bomberman.entities.EntityArr;
 //import bomberman.sound.Sound;
@@ -14,7 +15,7 @@ public class BombItem extends Item {
         super.update();
         if (this.used == 1) {
             EntityArr.bombers.forEach(g -> g.setNumBombs(g.getNumBombs() + 1));
-//            Sound.play("Item1");
+            Sound.play("Item");
         }
     }
 }

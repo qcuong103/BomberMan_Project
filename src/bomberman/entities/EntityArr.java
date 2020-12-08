@@ -4,6 +4,7 @@ import bomberman.entities.blocks.Brick;
 import bomberman.entities.bomb.Bomb;
 import bomberman.entities.enemy.Enemy;
 import bomberman.entities.item.Item;
+import bomberman.view.GameViewManager;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,6 +34,7 @@ public class EntityArr {
             enemy = enemyIterator.next();
             if (!enemy.isAlive()) {
                 enemyIterator.remove();
+                GameViewManager.POINTS += 100;
             }
         }
     }

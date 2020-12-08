@@ -52,6 +52,7 @@ public class Ovape extends Enemy {
             }
         } else {
             this.enemyDead();
+
         }
     }
 }

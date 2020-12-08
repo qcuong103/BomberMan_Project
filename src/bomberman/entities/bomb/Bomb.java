@@ -1,5 +1,6 @@
 package bomberman.entities.bomb;
 
+import bomberman.sound.Sound;
 import javafx.scene.image.Image;
 import bomberman.entities.Entity;
 import bomberman.entities.EntityArr;
@@ -41,7 +42,7 @@ public class Bomb extends Entity {
             if (this.timerEx == 1) {
                 this.timerEx++;
                 this.addFlame();
-//                Sound.play("BOM_11_M");
+                Sound.play("BOM_11_M");
             }
         } else {
             if (this.timerEx == 0) {

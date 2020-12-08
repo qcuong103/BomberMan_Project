@@ -55,6 +55,7 @@ public class Balloom extends Enemy {
             }
         } else {
             this.enemyDead();
+
         }
     }
 }

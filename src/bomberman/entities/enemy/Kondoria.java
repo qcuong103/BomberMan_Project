@@ -88,6 +88,7 @@ public class Kondoria extends Enemy {
             choseSprite();
         } else {
             this.enemyDead();
+
         }
     }
 
